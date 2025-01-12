@@ -1,0 +1,35 @@
+﻿@page "/"
+@inject NavigationManager Navigation
+@rendermode InteractiveServer
+
+<PageTitle>Login</PageTitle>
+
+<h1 class="text-center">Hello, please log in</h1>
+<form class="shadow-lg p-3 mb-5 bg-body-tertiary rounded" @onsubmit="HandleSubmit">
+    <div class="mb-3">
+        <label for="email" class="form-label">Email address</label>
+        <input type="email" @bind-value="email" class="form-control" id="email" placeholder="name@example.com" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" @bind-value="password" class="form-control" id="password" minlength="6" maxlength="20" placeholder="123Example!" required>
+    </div>
+
+    <div class="d-grid gap-2 col-6 mx-auto">
+        <button type="submit" class="btn btn-primary fw-bold">Log In</button>
+    </div>
+</form>
+<span class="showInput fw-medium">The entered email is <span class="fw-bolder">@email</span></span>
+<span class="showInput fw-medium">The entered password is <span class="fw-bolder">@password</span></span>
+
+@code{
+    string email = "";
+    string password = "";
+
+    public void HandleSubmit()
+    {
+        Console.WriteLine($"Submitted: {email} {password}");
+        Navigation.NavigateTo("/success");
+    }
+}
